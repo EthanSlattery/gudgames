@@ -18,24 +18,25 @@ package com.prosody.gudgames.data
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import com.prosody.gudgames.data.local.database.Game
 import com.prosody.gudgames.data.local.database.GameDao
+import com.prosody.gudgames.data.local.database.GameEntity
+import com.prosody.gudgames.ui.model.Game
 import javax.inject.Inject
 
 interface GameRepository {
-    val games: Flow<List<String>>
+    val games: Flow<List<Game>>
 
-    suspend fun add(name: String)
+    suspend fun add(game: Game)
 }
 
 class DefaultGameRepository @Inject constructor(
     private val gameDao: GameDao
 ) : GameRepository {
 
-    override val games: Flow<List<String>> =
-        gameDao.getGames().map { items -> items.map { it.name } }
+    override val games: Flow<List<Game>> =
+        gameDao.getGames().map { items -> items.map { Game(it.title) } }
 
-    override suspend fun add(name: String) {
-        gameDao.insertGame(Game(name = name))
+    override suspend fun add(game: Game) {
+        gameDao.insertGame(GameEntity(title = game.title))
     }
 }

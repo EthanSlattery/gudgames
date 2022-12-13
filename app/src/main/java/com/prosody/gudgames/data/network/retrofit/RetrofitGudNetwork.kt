@@ -1,7 +1,7 @@
 package com.prosody.gudgames.data.network.retrofit
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import com.prosody.gudgames.data.local.database.Game
+import com.prosody.gudgames.data.local.database.GameEntity
 import com.prosody.gudgames.data.network.GudNetworkDataSource
 import com.prosody.gudgames.data.network.util.ApiKeyHeaderInterceptor
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -12,7 +12,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.http.GET
-import retrofit2.http.POST
 import retrofit2.http.Query
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -25,7 +24,7 @@ private interface RetrofitGudNetworkApi {
     @GET(value = "/v4/games")
     suspend fun getGames(
         @Query("id") ids: List<String>?,
-    ): NetworkResponse<List<Game>>
+    ): NetworkResponse<List<GameEntity>>
 }
 
 // ToDo: Extract base URL to switch by product flavor?

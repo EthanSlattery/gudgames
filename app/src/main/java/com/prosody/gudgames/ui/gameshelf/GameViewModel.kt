@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.prosody.gudgames.ui.game
+package com.prosody.gudgames.ui.gameshelf
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -26,9 +26,10 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import com.prosody.gudgames.data.GameRepository
-import com.prosody.gudgames.ui.game.GameUiState.Error
-import com.prosody.gudgames.ui.game.GameUiState.Loading
-import com.prosody.gudgames.ui.game.GameUiState.Success
+import com.prosody.gudgames.ui.model.Game
+import com.prosody.gudgames.ui.gameshelf.GameShelfUiState.Error
+import com.prosody.gudgames.ui.gameshelf.GameShelfUiState.Loading
+import com.prosody.gudgames.ui.gameshelf.GameShelfUiState.Success
 import javax.inject.Inject
 
 @HiltViewModel
@@ -36,20 +37,20 @@ class GameViewModel @Inject constructor(
     private val gameRepository: GameRepository
 ) : ViewModel() {
 
-    val uiState: StateFlow<GameUiState> = gameRepository
+    val uiState: StateFlow<GameShelfUiState> = gameRepository
         .games.map(::Success)
         .catch { Error(it) }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), Loading)
 
-    fun addGame(name: String) {
+    fun addGame(gameTitle: String) {
         viewModelScope.launch {
-            gameRepository.add(name)
+            gameRepository.add(Game(title = gameTitle))
         }
     }
 }
 
-sealed interface GameUiState {
-    object Loading : GameUiState
-    data class Error(val throwable: Throwable) : GameUiState
-    data class Success(val data: List<String>) : GameUiState
+sealed interface GameShelfUiState {
+    object Loading : GameShelfUiState
+    data class Error(val throwable: Throwable) : GameShelfUiState
+    data class Success(val games: List<Game>) : GameShelfUiState
 }

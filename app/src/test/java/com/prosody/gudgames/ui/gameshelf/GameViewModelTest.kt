@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.prosody.gudgames.ui.game
+package com.prosody.gudgames.ui.gameshelf
 
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -36,13 +36,13 @@ class GameViewModelTest {
     @Test
     fun uiState_initiallyLoading() = runTest {
         val viewModel = GameViewModel(FakeGameRepository())
-        assertEquals(viewModel.uiState.first(), GameUiState.Loading)
+        assertEquals(viewModel.uiState.first(), GameShelfUiState.Loading)
     }
 
     @Test
     fun uiState_onItemSaved_isDisplayed() = runTest {
         val viewModel = GameViewModel(FakeGameRepository())
-        assertEquals(viewModel.uiState.first(), GameUiState.Loading)
+        assertEquals(viewModel.uiState.first(), GameShelfUiState.Loading)
     }
 }
 

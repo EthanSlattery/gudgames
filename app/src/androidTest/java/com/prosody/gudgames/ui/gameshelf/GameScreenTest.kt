@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.prosody.gudgames.ui.game
+package com.prosody.gudgames.ui.gameshelf
 
 import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
@@ -27,7 +27,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 /**
- * UI tests for [GameScreen].
+ * UI tests for [GameShelfScreen].
  */
 @RunWith(AndroidJUnit4::class)
 class GameScreenTest {
@@ -38,7 +38,7 @@ class GameScreenTest {
     @Before
     fun setup() {
         composeTestRule.setContent {
-            GameScreen(FAKE_DATA, onSave = {})
+            GameShelfScreen(FAKE_DATA, onSave = {})
         }
     }
 

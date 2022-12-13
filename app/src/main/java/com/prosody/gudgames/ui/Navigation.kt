@@ -23,14 +23,14 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.prosody.gudgames.ui.game.GameScreen
+import com.prosody.gudgames.ui.gameshelf.GameShelfScreen
 
 @Composable
 fun MainNavigation() {
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = "main") {
-        composable("main") { GameScreen(modifier = Modifier.padding(16.dp)) }
+        composable("main") { GameShelfScreen(modifier = Modifier.padding(16.dp)) }
         // TODO: Add more destinations
     }
 }

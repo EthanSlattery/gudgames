@@ -23,7 +23,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import com.prosody.gudgames.data.local.database.Game
+import com.prosody.gudgames.data.local.database.GameEntity
 import com.prosody.gudgames.data.local.database.GameDao
 
 /**
@@ -45,13 +45,13 @@ class DefaultGameRepositoryTest {
 
 private class FakeGameDao : GameDao {
 
-    private val data = mutableListOf<Game>()
+    private val data = mutableListOf<GameEntity>()
 
-    override fun getGames(): Flow<List<Game>> = flow {
+    override fun getGames(): Flow<List<GameEntity>> = flow {
         emit(data)
     }
 
-    override suspend fun insertGame(item: Game) {
+    override suspend fun insertGame(item: GameEntity) {
         data.add(0, item)
     }
 }
