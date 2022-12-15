@@ -90,6 +90,8 @@ dependencies {
 
     // Hilt Dependency Injection
     implementation(libs.hilt.android)
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.0-alpha03")
+    implementation("androidx.window:window-core:+")
     kapt(libs.hilt.compiler)
     // Hilt and instrumented tests.
     androidTestImplementation(libs.hilt.android.testing)

@@ -16,4 +16,7 @@
 
 <resources>
     <string name="app_name">gudgames</string>
+    <string name="home">home</string>
+    <string name="my_games">My Games</string>
+    <string name="search">Search</string>
 </resources>

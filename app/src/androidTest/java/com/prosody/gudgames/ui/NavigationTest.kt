@@ -32,11 +32,5 @@ class NavigationTest {
 
     @get:Rule(order = 1)
     val composeTestRule = createAndroidComposeRule<MainActivity>()
-
-    @Test
-    fun test1() {
-        // TODO: Add navigation tests
-        composeTestRule.onNodeWithText(fakeGames.first(), substring = true).assertExists()
-    }
 }
 

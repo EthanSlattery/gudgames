@@ -25,6 +25,9 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import com.prosody.gudgames.data.GameRepository
+import com.prosody.gudgames.ui.model.Game
+import com.prosody.gudgames.ui.mygames.MyGamesUiState
+import com.prosody.gudgames.ui.mygames.MyGamesViewModel
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -32,28 +35,28 @@ import com.prosody.gudgames.data.GameRepository
  * See [testing documentation](http://d.android.com/tools/testing).
  */
 @OptIn(ExperimentalCoroutinesApi::class) // TODO: Remove when stable
-class GameViewModelTest {
+class MyGamesViewModelTest {
     @Test
     fun uiState_initiallyLoading() = runTest {
-        val viewModel = GameViewModel(FakeGameRepository())
-        assertEquals(viewModel.uiState.first(), GameShelfUiState.Loading)
+        val viewModel = MyGamesViewModel(FakeGameRepository())
+        assertEquals(viewModel.uiState.first(), MyGamesUiState.Loading)
     }
 
     @Test
     fun uiState_onItemSaved_isDisplayed() = runTest {
-        val viewModel = GameViewModel(FakeGameRepository())
-        assertEquals(viewModel.uiState.first(), GameShelfUiState.Loading)
+        val viewModel = MyGamesViewModel(FakeGameRepository())
+        assertEquals(viewModel.uiState.first(), MyGamesUiState.Loading)
     }
 }
 
 private class FakeGameRepository : GameRepository {
 
-    private val data = mutableListOf<String>()
+    private val data = mutableListOf<Game>()
 
-    override val games: Flow<List<String>>
+    override val games: Flow<List<Game>>
         get() = flow { emit(data.toList()) }
 
-    override suspend fun add(name: String) {
-        data.add(0, name)
+    override suspend fun add(game: Game) {
+        data.add(0, game)
     }
 }

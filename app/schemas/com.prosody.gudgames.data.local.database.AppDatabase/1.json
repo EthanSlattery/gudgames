@@ -2,15 +2,15 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "9fc6744ebe064e881c651707cdbae7f8",
+    "identityHash": "958fe090ae2dbc44102250ac3ff20154",
     "entities": [
       {
-        "tableName": "Game",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT NOT NULL, `uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
+        "tableName": "GameEntity",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`title` TEXT NOT NULL, `uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
         "fields": [
           {
-            "fieldPath": "name",
-            "columnName": "name",
+            "fieldPath": "title",
+            "columnName": "title",
             "affinity": "TEXT",
             "notNull": true
           },
@@ -34,7 +34,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9fc6744ebe064e881c651707cdbae7f8')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '958fe090ae2dbc44102250ac3ff20154')"
     ]
   }
 }

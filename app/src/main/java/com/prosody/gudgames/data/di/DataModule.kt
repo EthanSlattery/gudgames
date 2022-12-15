@@ -24,6 +24,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import com.prosody.gudgames.data.GameRepository
 import com.prosody.gudgames.data.DefaultGameRepository
+import com.prosody.gudgames.ui.model.Game
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -39,11 +40,11 @@ interface DataModule {
 }
 
 class FakeGameRepository @Inject constructor() : GameRepository {
-    override val games: Flow<List<String>> = flowOf(fakeGames)
+    override val games: Flow<List<Game>> = flowOf(fakeGames)
 
-    override suspend fun add(name: String) {
+    override suspend fun add(game: Game) {
         throw NotImplementedError()
     }
 }
 
-val fakeGames = listOf("One", "Two", "Three")
+val fakeGames = listOf(Game("One"), Game("Two"), Game("Three"))
